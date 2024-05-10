@@ -128,7 +128,7 @@ jobs:
       - name: Release
         uses: svenstaro/upload-release-action@v2
         with:
-          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          repo_token: ${{ secrets.AGITHUB_TOKEN }}
           file: target/${{ matrix.target }}/release/genact${{ env.EXE }}
           tag: ${{ github.ref_name }}
           asset_name: genact-${{ steps.extract_version.outputs.version }}-${{ matrix.target }}${{ env.EXE }}
@@ -138,7 +138,7 @@ jobs:
       - name: Deploy
         uses: peaceiris/actions-gh-pages@v3
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
+          github_token: ${{ secrets.AGITHUB_TOKEN }}
           publish_dir: ./dist
         if: startsWith(github.ref_name, 'v') && github.ref_type == 'tag' && matrix.target == 'wasm32-unknown-unknown'
 
